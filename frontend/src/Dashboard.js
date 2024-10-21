@@ -1,8 +1,8 @@
-// src/TokenFetcher.js
+// src/components/Dashboard.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const TokenFetcher = () => {
+function Dashboard() {
     const [usernames, setUsernames] = useState([]); // 儲存用戶名
     const [deviceStatus, setDeviceStatus] = useState(''); // 儲存設備狀態
     const [deviceDetails, setDeviceDetails] = useState(''); // 儲存設備詳細信息
@@ -57,66 +57,60 @@ const TokenFetcher = () => {
     };
 
     return (
-        <div className="flex h-screen">
-            {/* 側邊導航欄 */}
-            <nav className="w-1/4 bg-gray-200 p-5 h-full">
-                <h2 className="text-xl font-semibold mb-4">導航</h2>
-                <ul>
-                    <li className="mb-2">
-                        <button 
-                            onClick={fetchUsernames} 
-                            className="w-full bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 transition duration-200"
-                        >
-                            用戶管理
-                        </button>
-                    </li>
-                    <li className="mb-2">
-                        <button 
-                            onClick={fetchDeviceStatus} 
-                            className="w-full bg-yellow-500 text-white font-bold py-2 rounded hover:bg-yellow-600 transition duration-200"
-                        >
-                            設備狀態
-                        </button>
-                    </li>
-                    <li className="mb-2">
-                        <button 
-                            onClick={fetchDeviceDetails} 
-                            className="w-full bg-purple-500 text-white font-bold py-2 rounded hover:bg-purple-600 transition duration-200"
-                        >
-                            設備���細信息
-                        </button>
-                    </li>
-                </ul>
-            </nav>
-
-            {/* 主要內容區域 */}
-            <div className="w-3/4 p-5 flex flex-col items-center ml-4"> {/* 增加左邊距 */}
+        <div className="flex-1 p-6 bg-gray-100">
+            <h1 className="text-2xl font-semibold">歡迎來到管理者儀表板</h1>
+            <div className="flex flex-col items-center h-screen">
                 <h1 className="text-3xl font-bold text-center mb-5">MDM 管理控制台</h1>
-                <div className="flex flex-col space-y-4 w-full">
+                <div className="flex flex-col space-y-4 w-full max-w-md">
                     <button 
                         onClick={fetchUsernames} 
-                        className="bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 transition duration-200 w-full"
+                        className={`bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 transition duration-200 w-full ${loading.usernames ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        disabled={loading.usernames}
                     >
-                        獲取用戶名
+                        {loading.usernames ? '加載中...' : '使用者名稱'}
                     </button>
                     <button 
                         onClick={fetchDeviceStatus} 
-                        className="bg-yellow-500 text-white font-bold py-2 rounded hover:bg-yellow-600 transition duration-200 w-full"
+                        className={`bg-yellow-500 text-white font-bold py-2 rounded hover:bg-yellow-600 transition duration-200 w-full ${loading.deviceStatus ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        disabled={loading.deviceStatus}
                     >
-                        獲取設備狀態
+                        {loading.deviceStatus ? '加載中...' : '獲取設備位置'}
                     </button>
                     <button 
                         onClick={fetchDeviceDetails} 
-                        className="bg-purple-500 text-white font-bold py-2 rounded hover:bg-purple-600 transition duration-200 w-full"
+                        className={`bg-purple-500 text-white font-bold py-2 rounded hover:bg-purple-600 transition duration-200 w-full ${loading.deviceDetails ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        disabled={loading.deviceDetails}
                     >
-                        獲取設備詳細信息
+                        {loading.deviceDetails ? '加載中...' : '獲取設備詳細訊息'}
                     </button>
                 </div>
 
                 {error && <p className="mt-5 text-center text-red-600">{error}</p>}
+                {usernames.length > 0 && (
+                    <div className="mt-5">
+                        <h2 className="text-xl font-semibold">使用者列表</h2>
+                        <ul>
+                            {usernames.map((username, index) => (
+                                <li key={index} className="py-1">{username}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+                {deviceStatus && (
+                    <div className="mt-5">
+                        <h2 className="text-xl font-semibold">設備位置</h2>
+                        <p>{deviceStatus}</p>
+                    </div>
+                )}
+                {deviceDetails && (
+                    <div className="mt-5">
+                        <h2 className="text-xl font-semibold">設備詳細訊息</h2>
+                        <p>{deviceDetails}</p>
+                    </div>
+                )}
             </div>
         </div>
     );
-};
+}
 
-export default TokenFetcher;
+export default Dashboard;

@@ -1,11 +1,14 @@
 // src/App.js
 import React from 'react';
 import TokenFetcher from './TokenFetcher';
+import Sidebar from './Sidebar';
+import Dashboard from './Dashboard';
 
 function App() {
     return (
-        <div className="App bg-gray-100 min-h-screen flex items-center justify-center">
-            <TokenFetcher />
+        <div className="flex">
+            <Sidebar />
+            <Dashboard />
         </div>
     );
 }
