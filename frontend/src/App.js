@@ -4,7 +4,7 @@ import TokenFetcher from './TokenFetcher';
 
 function App() {
     return (
-        <div className="App">
+        <div className="App bg-gray-100 min-h-screen flex items-center justify-center">
             <TokenFetcher />
         </div>
     );

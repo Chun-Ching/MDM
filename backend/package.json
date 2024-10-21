@@ -3,6 +3,7 @@
     "axios": "^1.7.7",
     "cors": "^2.8.5",
     "express": "^4.21.1",
+    "leaflet": "^1.9.4",
     "morgan": "^1.10.0"
   },
   "name": "backend",
