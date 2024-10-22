@@ -6,9 +6,11 @@ import Dashboard from './Dashboard';
 
 function App() {
     return (
-        <div className="flex">
+        <div className="d-flex">
             <Sidebar />
-            <Dashboard />
+            <div className="flex-grow-1">
+                <Dashboard />
+            </div>
         </div>
     );
 }

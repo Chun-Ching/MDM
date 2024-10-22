@@ -57,15 +57,15 @@ const TokenFetcher = () => {
     };
 
     return (
-        <div className="flex h-screen">
+        <div className="d-flex h-100">
             {/* 側邊導航欄 */}
-            <nav className="w-1/4 bg-gray-200 p-5 h-full">
-                <h2 className="text-xl font-semibold mb-4">導航</h2>
-                <ul>
+            <nav className="bg-light p-3" style={{ width: '25%' }}>
+                <h2 className="h5">導航</h2>
+                <ul className="list-unstyled">
                     <li className="mb-2">
                         <button 
                             onClick={fetchUsernames} 
-                            className="w-full bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 transition duration-200"
+                            className="btn btn-primary w-100"
                         >
                             用戶管理
                         </button>
@@ -73,7 +73,7 @@ const TokenFetcher = () => {
                     <li className="mb-2">
                         <button 
                             onClick={fetchDeviceStatus} 
-                            className="w-full bg-yellow-500 text-white font-bold py-2 rounded hover:bg-yellow-600 transition duration-200"
+                            className="btn btn-warning w-100"
                         >
                             設備狀態
                         </button>
@@ -81,39 +81,39 @@ const TokenFetcher = () => {
                     <li className="mb-2">
                         <button 
                             onClick={fetchDeviceDetails} 
-                            className="w-full bg-purple-500 text-white font-bold py-2 rounded hover:bg-purple-600 transition duration-200"
+                            className="btn btn-info w-100"
                         >
-                            設備���細信息
+                            設備詳細信息
                         </button>
                     </li>
                 </ul>
             </nav>
 
             {/* 主要內容區域 */}
-            <div className="w-3/4 p-5 flex flex-col items-center ml-4"> {/* 增加左邊距 */}
-                <h1 className="text-3xl font-bold text-center mb-5">MDM 管理控制台</h1>
-                <div className="flex flex-col space-y-4 w-full">
+            <div className="p-4" style={{ width: '75%' }}>
+                <h1 className="h3 mb-4">MDM 管理控制台</h1>
+                <div className="d-flex flex-column">
                     <button 
                         onClick={fetchUsernames} 
-                        className="bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 transition duration-200 w-full"
+                        className="btn btn-primary mb-2"
                     >
                         獲取用戶名
                     </button>
                     <button 
                         onClick={fetchDeviceStatus} 
-                        className="bg-yellow-500 text-white font-bold py-2 rounded hover:bg-yellow-600 transition duration-200 w-full"
+                        className="btn btn-warning mb-2"
                     >
                         獲取設備狀態
                     </button>
                     <button 
                         onClick={fetchDeviceDetails} 
-                        className="bg-purple-500 text-white font-bold py-2 rounded hover:bg-purple-600 transition duration-200 w-full"
+                        className="btn btn-info mb-2"
                     >
                         獲取設備詳細信息
                     </button>
                 </div>
 
-                {error && <p className="mt-5 text-center text-red-600">{error}</p>}
+                {error && <p className="text-danger">{error}</p>}
             </div>
         </div>
     );
